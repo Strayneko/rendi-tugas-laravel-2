@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -14,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('post.index', [
+            'posts' => Post::all(),
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -35,7 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|max:255|unique:posts',
+            'image' => 'image|file|max:1024',
+            'body' => 'required'
+        ]);
+        if ($request->file('image')) $validated['image'] = $request->file('image')->store('post-images', 'public');
+        $validated['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        Post::create($validated);
+        return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
 
     /**
@@ -47,6 +61,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return view('post.show', ['post' => $post]);
     }
 
     /**
@@ -57,7 +72,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+
+        return view('post.edit', ['post' => $post]);
     }
 
     /**

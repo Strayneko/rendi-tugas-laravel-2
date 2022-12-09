@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         // give default product description if user has no specified the product description
         // and trim the product description if user specified it
-        $validated['description'] = is_null($request->input('description')) ? 'Produk ini tidak memiliki deskripsi' : Str::of($request->input('description'))->trim();
+        $validated['description'] = is_null($request->input('description')) ? 'This product has no description' : Str::of($request->input('description'))->trim();
 
         // add default product image
         $validated['image'] = 'images/no_image.png';
@@ -79,7 +79,7 @@ class ProductController extends Controller
             $validated['has_image'] = true;
         }
         Product::create($validated);
-        return redirect()->route('product.list')->with('message', 'product berhasil ditambahkan');
+        return redirect()->route('product.list')->with('message', 'Product has been added!');
     }
 
     /**
