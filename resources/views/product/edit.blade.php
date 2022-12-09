@@ -13,7 +13,7 @@
                 <label for="name" class="form-label">Nama Product <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" required
                     name="name" value="{{ old('name', $product->name) }}">
-                {{-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+                <div class="form-text float-end" id="name_count"><span id="count">0</span>/255</div>
 
                 @error('name')
                     <div class="invalid-feedback">
@@ -25,7 +25,7 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Deskripsi</label>
                 <textarea type="text" class="form-control" id="description" name="description" value="">{{ old('description', $product->description) }}</textarea>
-
+                <div class="form-text float-end" id="desc_count"><span id="count">0</span></div>
             </div>
 
             <div class="mb-3">

@@ -23,16 +23,20 @@
     <script>
         const name = document.querySelector('#name');
         const description = document.querySelector('#description')
+        const counterName = document.querySelector('#name_count #count');
+        const counterDesc = document.querySelector('#desc_count #count')
+        counterName.innerHTML = name.value.length
+        counterDesc.innerHTML = description.value.length
+
+
         name.addEventListener('keydown', () => {
-            const counter = document.querySelector('#name_count #count');
-            counter.innerHTML = name.value.length
+            counterName.innerHTML = name.value.length
             if (name.value.length >= 255) {
                 name.value = name.value.slice(0, 254);
             }
         })
         description.addEventListener('keydown', () => {
-            const counter = document.querySelector('#desc_count #count')
-            counter.innerHTML = description.value.length
+            counterDesc.innerHTML = description.value.length
         })
     </script>
 </body>
