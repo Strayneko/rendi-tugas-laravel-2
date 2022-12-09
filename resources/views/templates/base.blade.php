@@ -31,8 +31,8 @@
 
         name.addEventListener('keydown', () => {
             counterName.innerHTML = name.value.length
-            if (name.value.length >= 255) {
-                name.value = name.value.slice(0, 254);
+            if (name.value.length >= 50) {
+                name.value = name.value.slice(0, 49);
             }
         })
         description.addEventListener('keydown', () => {

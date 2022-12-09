@@ -13,7 +13,7 @@
                 <label for="name" class="form-label">Nama Product <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" required
                     name="name" value="{{ old('name', $product->name) }}">
-                <div class="form-text float-end" id="name_count"><span id="count">0</span>/255</div>
+                <div class="form-text float-end" id="name_count"><span id="count">0</span>/50</div>
 
                 @error('name')
                     <div class="invalid-feedback">
