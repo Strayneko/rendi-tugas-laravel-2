@@ -22,4 +22,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('product', ProductController::class)->names([
     'create' => 'product.create',
     'index'  => 'product.list'
-])->except('detail');
+])->except('show');
