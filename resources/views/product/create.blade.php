@@ -25,7 +25,7 @@
                 <label for="description" class="form-label">Deskripsi</label>
                 <textarea type="text" class="form-control" id="description" name="description">{{ old('description') }}</textarea>
                 <div class="form-text float-end" id="desc_count"><span id="count">0</span></div>
-
+                <div class="clearfix"></div>
             </div>
 
             <div class="mb-3">
@@ -60,6 +60,7 @@
                         {{ $message }}
                     </div>
                 @enderror
+
             </div>
 
             <button type="submit" class="btn btn-primary">Tambah</button>
