@@ -46,10 +46,13 @@ class PostController extends Controller
             'body' => 'required'
         ]);
         if ($request->file('image')) $validated['image'] = $request->file('image')->store('post-images', 'public');
+        // trim product name and convert it to title case
+        $validated['title'] = Str::of($request->input('title'))->trim()->title();
+        // make excerpt from post body
         $validated['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Post::create($validated);
-        return redirect()->route('post.index')->with('success', 'New post has been added!');
+        return redirect()->route('post.index')->with('message', 'post berhasil ditambahkan!');
     }
 
     /**

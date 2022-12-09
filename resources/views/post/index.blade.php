@@ -3,6 +3,9 @@
 @section('title', 'Post List')
 
 @section('content')
+    @if (session('message'))
+        <x-alert.success message="{{ session('message') }}" />
+    @endif
     <a class="btn btn-primary mb-4" href="{{ route('post.create') }}">
         Tambah Post
     </a>
@@ -37,7 +40,7 @@
                         {{ $post->excerpt }}
                     </td>
                     <td>
-                        {{ $post->created_at }}
+                        {{ date('M d, Y', strtotime($post->created_at)) }}
                     </td>
                     <td>
                         <a href="{{ route('post.edit', ['post' => $post]) }}" class="btn badge text-bg-primary">Edit</a>
