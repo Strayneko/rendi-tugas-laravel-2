@@ -49,7 +49,7 @@ class PostController extends Controller
         $validated['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Post::create($validated);
-        return redirect('/dashboard/posts')->with('success', 'New post has been added!');
+        return redirect()->route('post.index')->with('success', 'New post has been added!');
     }
 
     /**

@@ -41,6 +41,18 @@
         description.addEventListener('keydown', () => {
             counterDesc.innerHTML = description.value.length
         })
+
+
+        // get slug automatically
+        async function getSlug(elem) {
+
+            const title = document.querySelector('#title')
+            const slug = await fetch(`/api/slug?title=${title.value}`)
+                .then(res => res.json())
+                .then(res => res)
+                .catch(res => res)
+            if (slug.status) elem.value = slug.slug;
+        }
     </script>
 </body>
 

@@ -25,11 +25,12 @@
                         {{ $message }}
                     </div>
                 @enderror
+
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror"
-                    value="{{ old('slug') }}" name="slug">
+                    value="{{ old('slug') }}" name="slug" onfocus="getSlug(this)" readonly>
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
