@@ -15,6 +15,8 @@ class HelperController extends Controller
             'status' => false,
             'message' => 'Bad request!. No argument specified!',
         ], 400);
+
+
         return response()->json([
             'status_code' => 200,
             'status' => true,

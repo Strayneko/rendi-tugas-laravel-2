@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function product()
     {
-        return view('home', ['products' => \App\Models\Product::all()]);
+        return view('home.product', ['products' => \App\Models\Product::all()]);
+    }
+    public function post()
+    {
+        return view('home.post', ['posts' => \App\Models\Post::all()]);
     }
 }

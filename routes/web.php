@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// redirecting user when user accessing root page
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::prefix('home')->group(function () {
+    Route::get('/product', [HomeController::class, 'product'])->name('home.product');
+    Route::get('/post', [HomeController::class, 'post'])->name('home.post');
+});
 
 // product resource controller
 Route::resource('product', ProductController::class)->names([
@@ -25,4 +27,6 @@ Route::resource('product', ProductController::class)->names([
 ])->except('show');
 
 // post resource controller
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)->scoped([
+    'post' => 'slug'
+]);

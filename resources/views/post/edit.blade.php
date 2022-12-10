@@ -31,8 +31,7 @@
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror"
-                    value="{{ old('slug', $post->slug) }}" name="slug" onfocus="getSlug(this)" placeholder="slug-post"
-                    readonly>
+                    value="{{ old('slug', $post->slug) }}" name="slug" onfocus="getSlug(this)" placeholder="slug-post">
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
