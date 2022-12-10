@@ -31,7 +31,7 @@
                     </td>
                     <td>
                         <img src="{{ asset('storage') . '/' . $post->image }}" alt="" class="img-thumbnail"
-                            style="width: 80%; height:30px;" />
+                            style="width: 80%; height:60px;" />
                     </td>
                     <td>
                         {{ $post->title }}

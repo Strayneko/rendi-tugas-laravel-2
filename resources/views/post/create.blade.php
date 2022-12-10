@@ -37,44 +37,29 @@
                     </div>
                 @enderror
             </div>
-            {{-- <div class="mb-3">
-                <label for="slug" class="form-label">Category</label>
-                <select class="form-select @error('category_id') is-invalid @enderror" name="category_id"
-                    aria-label="Default select example">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" @if (old('category_id') == $category->id) selected @endif>
-                            {{ $category->name }}</option>
-                    @endforeach
-                </select>
-                @error('category_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
-            @error('body')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-            <div class="mb-3">
-                <label for="slug" class="form-label">Isi</label>
-                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-                <trix-editor input="body"></trix-editor>
-            </div>
+    </div> --}}
+    @error('body')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+    <div class="mb-3">
+        <label for="slug" class="form-label">Isi</label>
+        <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+        <trix-editor input="body"></trix-editor>
+    </div>
 
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Gambar</label>
-                <input class="form-control @error('image') is-invalid @enderror" name="image" type="file"
-                    id="formFile">
-                @error('image')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Gambar</label>
+        <input class="form-control @error('image') is-invalid @enderror" name="image" type="file" id="formFile">
+        @error('image')
+            <div class="invalid-feedback">
+                {{ $message }}
             </div>
-            <button class="btn btn-primary">Tambah Postingan</button>
-            <a class="btn btn-warning" href="{{ route('post.index') }}">Kembali</a>
-        </form>
+        @enderror
+    </div>
+    <button class="btn btn-primary">Tambah Postingan</button>
+    <a class="btn btn-warning" href="{{ route('post.index') }}">Kembali</a>
+    </form>
     </div>
 @endsection
