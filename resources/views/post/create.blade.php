@@ -73,7 +73,8 @@
                     </div>
                 @enderror
             </div>
-            <button class="btn btn-primary">Create Post</button>
+            <button class="btn btn-primary">Tambah Postingan</button>
+            <a class="btn btn-warning" href="{{ route('post.index') }}">Kembali</a>
         </form>
     </div>
 @endsection
