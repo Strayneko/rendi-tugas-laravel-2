@@ -36,7 +36,7 @@
                     <td>
                         {{ $post->title }}
                     </td>
-                    <td>
+                    <td class="col-md-5">
                         {{ $post->excerpt }}
                     </td>
                     <td>

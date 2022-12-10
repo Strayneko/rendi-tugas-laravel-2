@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -45,11 +46,17 @@ class PostController extends Controller
             'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
-        if ($request->file('image')) $validated['image'] = $request->file('image')->store('post-images', 'public');
+        // add default post image
+        $validated['image'] = 'images/no_image.png';
+        $validated['has_image'] = false;
+        if ($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('post-images', 'public');
+            $validated['has_image'] = true;
+        }
         // trim product name and convert it to title case
         $validated['title'] = Str::of($request->input('title'))->trim()->title();
         // make excerpt from post body
-        $validated['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validated['excerpt'] = Str::limit(strip_tags($request->body), 150);
 
         Post::create($validated);
         return redirect()->route('post.index')->with('message', 'post berhasil ditambahkan!');
@@ -88,7 +95,24 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'title' => 'required|max:255',
+            'image' => 'image|file|max:1024',
+            'body' => 'required'
+        ];
+
+
+        if ($request->slug != $post->slug) $rules['slug'] = 'required|max:255|unique:posts';
+        $validated = $request->validate($rules);
+        /* Check wheter user uploaded  new image and if post already has an image. If both
+        are true, it will update the image. */
+        if ($request->file('image')) {
+            if ($post->has_image) Storage::delete($post->image, 'public');
+            $validated['image'] = $request->file('image')->store('post-images', 'public');
+        }
+        $validated['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        Post::find($post->id)->update($validated);
+        return redirect()->route('post.index')->with('message', 'Postingan telah diupdate!');
     }
 
     /**
@@ -99,6 +123,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        if ($post->has_image) {
+            Storage::disk('public')->delete($post->image);
+        }
+        return redirect()->route('post.index')->with('message', 'postingan dihapus!');
     }
 }

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('slug', 255);
             $table->string('title', 100);
-            $table->string('excerpt', 203);
+            $table->string('excerpt', 153);
+            $table->boolean('has_image');
             $table->text('body');
             $table->text('image');
             $table->timestamps();
