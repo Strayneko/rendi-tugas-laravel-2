@@ -37,7 +37,7 @@
                     </div>
                 @enderror
             </div>
-    </div> --}}
+    </div>
     @error('body')
         <div class="invalid-feedback">
             {{ $message }}
