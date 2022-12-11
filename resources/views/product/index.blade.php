@@ -33,7 +33,7 @@
                     </td>
                     <td>
                         <img src="{{ asset('storage') . '/' . $product->image }}" alt="" class="img-thumbnail"
-                            style="width: 80%; height:60px;" />
+                            style="width: 80%; height:60px;object-fit:contain" />
                     </td>
                     <td>
                         {{ $product->name }}

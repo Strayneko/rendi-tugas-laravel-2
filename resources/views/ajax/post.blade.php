@@ -1,6 +1,7 @@
  @if ($posts->count())
      <div class="card mb-3 col-md-6 mx-auto">
-         <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto" alt="...">
+         <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto"
+             style="height: 300px;object-fit:contain">
          <div class="card-body text-center">
              <h4 class="card-title">{{ $posts[0]->title }}</h4>
              <p>
@@ -22,7 +23,7 @@
                          <div class="card">
 
                              <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
-                                 style="height: 150px">
+                                 style="height: 150px; object-fit: contain">
                              <div class="card-body">
                                  <h5 class="card-title">{{ $post->title }}</h5>
                                  <small class="text-muted">
