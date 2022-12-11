@@ -6,6 +6,7 @@
     @if (session('message'))
         <x-alert.success message="{{ session('message') }}" />
     @endif
+
     <a class="btn btn-primary mb-4" href="{{ route('post.create') }}">
         Tambah Post
     </a>

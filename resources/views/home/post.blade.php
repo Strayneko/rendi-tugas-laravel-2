@@ -3,6 +3,18 @@
 @section('content')
 
     <h3 class="text-center mb-3">Semua Postingan</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <form action="{{ route('home.post') }}">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search something...." name="search"
+                        value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
     @if ($posts->count())
         <div class="card mb-3 col-md-6 mx-auto">
             <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto" alt="...">

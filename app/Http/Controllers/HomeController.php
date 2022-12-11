@@ -11,6 +11,14 @@ class HomeController extends Controller
     }
     public function post()
     {
-        return view('home.post', ['posts' => \App\Models\Post::all()]);
+        return view(
+            'home.post',
+            [
+                'posts' => \App\Models\Post::latest()
+                    ->filter(request(['search']))
+                    ->paginate(7)
+                    ->withQueryString()
+            ]
+        );
     }
 }
