@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('home.product') }}">Home Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home.post') }}">Home Post</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('home.post') }}">Home Post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('product.list') }}">Product</a>
