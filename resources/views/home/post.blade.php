@@ -8,55 +8,72 @@
             <form action="{{ route('home.post') }}">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search something...." name="search"
-                        value="{{ request('search') }}">
-                    <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                        value="{{ request('search') }}" id="search_query">
+                    <button class="btn btn-primary" type="submit" id="search_btn">Search</button>
                 </div>
             </form>
 
         </div>
     </div>
-    @if ($posts->count())
-        <div class="card mb-3 col-md-6 mx-auto">
-            <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto" alt="...">
-            <div class="card-body text-center">
-                <h4 class="card-title">{{ $posts[0]->title }}</h4>
-                <p>
-                    <small class="text-muted">
-                        {{ $posts[0]->created_at->diffForHumans() }}
-                </p>
-                </small>
-                <p class="card-text">{{ $posts[0]->excerpt }}</p>
+    <div id="search_content">
 
-                <a href="/post/{{ $posts[0]->slug }}" class="btn btn-primary">Red More</a>
-            </div>
-        </div>
+        @if ($posts->count())
+            <div class="card mb-3 col-md-6 mx-auto">
+                <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto" alt="...">
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ $posts[0]->title }}</h4>
+                    <p>
+                        <small class="text-muted">
+                            {{ $posts[0]->created_at->diffForHumans() }}
+                    </p>
+                    </small>
+                    <p class="card-text">{{ $posts[0]->excerpt }}</p>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    @foreach ($posts as $post)
-                        <div class="col-md-4 mb-3">
-                            <div class="card">
-
-                                <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
-                                    style="height: 150px">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
-                                    <small class="text-muted">
-                                        {{ $post->created_at->diffForHumans() }}</p>
-                                    </small>
-                                    <p class="card-text">{{ $post->excerpt }}</p>
-                                    <a href="/post/{{ $post->slug }}" class="btn btn-primary">Red More</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    <a href="/post/{{ $posts[0]->slug }}" class="btn btn-primary">Red More</a>
                 </div>
             </div>
-        </section>
-    @else
-        <p class="text-center fs-4">No post found!</p>
-    @endif
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        @foreach ($posts as $post)
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+
+                                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
+                                        style="height: 150px">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <small class="text-muted">
+                                            {{ $post->created_at->diffForHumans() }}</p>
+                                        </small>
+                                        <p class="card-text">{{ $post->excerpt }}</p>
+                                        <a href="/post/{{ $post->slug }}" class="btn btn-primary">Red More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @else
+            <p class="text-center fs-4">No post found!</p>
+        @endif
+    </div>
 
 
+    <script>
+        // live search
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchQuery = document.querySelector('#search_query');
+            searchQuery.addEventListener('keyup', async () => {
+                const search = await fetch(`/home/ajax/post?search=${searchQuery.value}`).then(res =>
+                        res
+                        .text())
+                    .then(res =>
+                        res)
+                document.querySelector('#search_content').innerHTML = search
+            })
+        });
+    </script>
 @endsection

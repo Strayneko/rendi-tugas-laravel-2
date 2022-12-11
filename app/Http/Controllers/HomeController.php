@@ -1,6 +1,10 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Request;
+
 
 
 class HomeController extends Controller
@@ -13,6 +17,19 @@ class HomeController extends Controller
     {
         return view(
             'home.post',
+            [
+                'posts' => \App\Models\Post::latest()
+                    ->filter(request(['search']))
+                    ->paginate(7)
+                    ->withQueryString()
+            ]
+        );
+    }
+
+    public function postAjax()
+    {
+        return view(
+            'ajax.post',
             [
                 'posts' => \App\Models\Post::latest()
                     ->filter(request(['search']))

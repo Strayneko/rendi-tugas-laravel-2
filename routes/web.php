@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('home.product');
 });
-
 Route::prefix('home')->group(function () {
     Route::get('/product', [HomeController::class, 'product'])->name('home.product');
     Route::get('/post', [HomeController::class, 'post'])->name('home.post');
+    Route::get('/ajax/post', [HomeController::class, 'postAjax']);
 });
 
 // product resource controller
