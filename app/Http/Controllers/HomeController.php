@@ -19,9 +19,8 @@ class HomeController extends Controller
             'home.post',
             [
                 'posts' => \App\Models\Post::latest()
-                    ->filter(request(['search']))
-                    ->paginate(7)
-                    ->withQueryString()
+                    ->filter(request(['search']))->get()
+
             ]
         );
     }
@@ -32,9 +31,7 @@ class HomeController extends Controller
             'ajax.post',
             [
                 'posts' => \App\Models\Post::latest()
-                    ->filter(request(['search']))
-                    ->paginate(7)
-                    ->withQueryString()
+                    ->filter(request(['search']))->get()
             ]
         );
     }
