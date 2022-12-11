@@ -28,7 +28,7 @@
                             {{ $posts[0]->created_at->diffForHumans() }}
                     </p>
                     </small>
-                    <p class="card-text">{{ $posts[0]->excerpt }}</p>
+                    <p class="card-text">{!! $posts[0]->excerpt !!}</p>
 
                     <a href="/post/{{ $posts[0]->slug }}" class="btn btn-primary">Red More</a>
                 </div>
