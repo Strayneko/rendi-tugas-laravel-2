@@ -5,11 +5,11 @@
     <h3 class="text-center mb-3">Semua Postingan</h3>
     <div class="row justify-content-center">
         <div class="col-md-6 ">
-            <form action="{{ route('home.post') }}">
+            <form action="">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search something...." name="search"
                         value="{{ request('search') }}" id="search_query">
-                    <button class="btn btn-primary" type="submit" id="search_btn">Search</button>
+
                 </div>
             </form>
 
@@ -63,17 +63,28 @@
 
 
     <script>
+        // debounce
+        const debounce = (callback, duration) => {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    callback.apply(this, args);
+                }, duration);
+            }
+        }
         // live search
         document.addEventListener('DOMContentLoaded', () => {
             const searchQuery = document.querySelector('#search_query');
-            searchQuery.addEventListener('keyup', async () => {
-                const search = await fetch(`/home/ajax/post?search=${searchQuery.value}`).then(res =>
+            searchQuery.addEventListener('input', debounce(async () => {
+                const search = await fetch(`/home/ajax/post?search=${searchQuery.value}`).then(
+                        res =>
                         res
                         .text())
                     .then(res =>
                         res)
                 document.querySelector('#search_content').innerHTML = search
-            })
+            }, 500));
         });
     </script>
 @endsection
