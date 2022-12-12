@@ -1,6 +1,6 @@
 # Laravel
 
-#### Edit .env file
+#### Copy .env.example to .env and Edit .env file
 
 ```bash
 DB_CONNECTION=pgsql/mysql
