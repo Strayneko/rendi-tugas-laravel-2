@@ -37,7 +37,7 @@
             <section>
                 <div class="container">
                     <div class="row">
-                        @foreach ($posts as $post)
+                        @foreach ($posts->skip(1) as $post)
                             <div class="col-md-4 mb-3">
                                 <div class="card">
 
@@ -49,7 +49,8 @@
                                             {{ $post->created_at->diffForHumans() }}</p>
                                         </small>
                                         <p class="card-text">{!! $post->excerpt !!}</p>
-                                        <a href="/post/{{ $post->slug }}" class="btn btn-primary">Red More</a>
+                                        <a href="{{ route('post.index', ['post' => $post]) }}" class="btn btn-primary">Red
+                                            More</a>
                                     </div>
                                 </div>
                             </div>
