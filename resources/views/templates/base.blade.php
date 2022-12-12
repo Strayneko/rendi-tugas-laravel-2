@@ -17,7 +17,7 @@
     <x-navbar />
     {{-- end of navbar components --}}
 
-    <main class="container mt-4">
+    <main @class(['container', 'mt-4'])>
         @yield('content')
     </main>
     <script src="{{ asset('bootstrap-5.2.3-dist/js/bootstrap.min.js') }}"></script>

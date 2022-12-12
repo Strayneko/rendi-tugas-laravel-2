@@ -1,8 +1,8 @@
  @if ($posts->count())
-     <div class="card mb-3 col-md-6 mx-auto">
-         <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mx-auto"
+     <div @class(['card', 'mb-3', 'col-md-6', 'mx-auto'])>
+         <img src="{{ asset('storage/' . $posts[0]->image) }}" @class(['card-img-top', 'mx-auto'])
              style="height: 300px;object-fit:contain">
-         <div class="card-body text-center">
+         <div @class(['card-body', 'text-center'])>
              <h4 class="card-title">{{ $posts[0]->title }}</h4>
              <p>
                  <small class="text-muted">

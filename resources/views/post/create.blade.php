@@ -18,8 +18,8 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Judul</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    placeholder="Judul Post" value="{{ old('title') }}">
+                <input type="text" @class(['form-control', 'is-invalid' => $errors->has('title')]) id="title" name="title" placeholder="Judul Post"
+                    value="{{ old('title') }}">
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -29,8 +29,8 @@
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror"
-                    value="{{ old('slug') }}" name="slug" onfocus="getSlug(this)" placeholder="slug-post" readonly>
+                <input type="text" id="slug" @class(['form-control', 'is-invalid' => $errors->has('slug')]) value="{{ old('slug') }}" name="slug"
+                    onfocus="getSlug(this)" placeholder="slug-post" readonly>
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
